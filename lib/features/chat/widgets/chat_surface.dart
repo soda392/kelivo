@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import 'package:Kelivo/core/providers/settings_provider.dart';
 import 'package:Kelivo/theme/chat_bubble_style.dart';
+import 'package:Kelivo/theme/cute_bubbles.dart';
 
 import 'frosted/frosted_surface.dart';
 
@@ -50,6 +51,14 @@ Widget buildSharedChatSurface(
   bool bareOnDefault = false,
   bool isUser = false,
 }) {
+  // ==== Cute Bubbles 点九皮肤（测试）====
+  final CuteBubbleSkin? cuteSkin = isUser
+      ? cuteBubbleSkinById('halo-pink')
+      : cuteBubbleSkinById('halo-blue');
+  if (cuteSkin != null) {
+    return CuteBubble(skin: cuteSkin, mirrored: !isUser, child: child);
+  }
+
   final theme = Theme.of(context);
   final cs = theme.colorScheme;
   final selection = _chatSurfaceStyleSelection(context, isUser: isUser);
